@@ -39,7 +39,7 @@ public class Player : MonoBehaviour
 			int vertical = 0;
 
 			horizontal = (int)Input.GetAxisRaw("Horizontal");
-			vertical = (int)Input.GetAxisRaw("Horizontal");
+			vertical = (int)Input.GetAxisRaw("Vertical");
 
 			Debug.Log("Horizontal : " + horizontal);
 			Debug.Log("Vertical : " + vertical);
