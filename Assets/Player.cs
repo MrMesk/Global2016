@@ -11,6 +11,10 @@ public class Player : MonoBehaviour
 	private BoxCollider2D boxCollider;      //The BoxCollider2D component attached to this object.
 	private Rigidbody2D rb2D;               //The Rigidbody2D component attached to this object.
 	private float inverseMoveTime;          //Used to make movement more efficient.
+
+	public float timerbeat;
+	float timer;
+	bool hasmoved = false;
 											// Use this for initialization
 	void Start ()
 	{
@@ -22,6 +26,37 @@ public class Player : MonoBehaviour
 
 		//By storing the reciprocal of the move time we can use it by multiplying instead of dividing, this is more efficient.
 		inverseMoveTime = 1f / moveTime;
+		timer = 0f;
+	}
+
+	void Update()
+	{
+		timer += Time.deltaTime;
+
+		if(timer >= (timerbeat * 0.8f) && !hasmoved )
+		{
+			int horizontal = 0;
+			int vertical = 0;
+
+			horizontal = (int)Input.GetAxisRaw("Horizontal");
+			vertical = (int)Input.GetAxisRaw("Horizontal");
+
+			if (horizontal != 0)
+			{
+				vertical = 0;
+			}
+
+			if (vertical != 0 || horizontal != 0)
+			{
+				hasmoved = true;
+				AttemptMove(horizontal, vertical);
+			}
+		}
+		if(timer > timerbeat)
+		{
+			//DamagePlayer
+		}
+		
 	}
 
 	protected bool Move (int xDir, int yDir, out RaycastHit2D hit)
@@ -30,7 +65,7 @@ public class Player : MonoBehaviour
 		Vector2 start = transform.position;
 
 		// Calculate end position based on the direction parameters passed in when calling Move.
-		Vector2 end = start + new Vector2(xDir, yDir);
+		Vector2 end = start + new Vector2(xDir, yDir) * 0.8f;
 
 		//Disable the boxCollider so that linecast doesn't hit this object's own collider.
 		boxCollider.enabled = false;
@@ -81,12 +116,11 @@ public class Player : MonoBehaviour
 
 	//The virtual keyword means AttemptMove can be overridden by inheriting classes using the override keyword.
 	//AttemptMove takes a generic parameter T to specify the type of component we expect our unit to interact with if blocked (Player for Enemies, Wall for Player).
-	protected virtual void AttemptMove<T>(int xDir, int yDir)
-		where T : Component
+	void AttemptMove(int xDir, int yDir)
 	{
 		//Hit will store whatever our linecast hits when Move is called.
 		RaycastHit2D hit;
-
+		bool isHit = false;
 		//Set canMove to true if Move was successful, false if failed.
 		bool canMove = Move(xDir, yDir, out hit);
 
@@ -94,21 +128,17 @@ public class Player : MonoBehaviour
 		if (hit.transform == null)
 			//If nothing was hit, return and don't execute further code.
 			return;
+		else
+			isHit = true;
 
 		//Get a component reference to the component of type T attached to the object that was hit
-		T hitComponent = hit.transform.GetComponent<T>();
+		
 
 		//If canMove is false and hitComponent is not equal to null, meaning MovingObject is blocked and has hit something it can interact with.
-		if (!canMove && hitComponent != null)
+		if (!canMove && isHit)
 
 			//Call the OnCantMove function and pass it hitComponent as a parameter.
 			return;
 	}
 
-
-	// Update is called once per frame
-	void Update ()
-	{
-	
-	}
 }
