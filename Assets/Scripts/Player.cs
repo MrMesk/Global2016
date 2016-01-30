@@ -3,146 +3,122 @@ using System.Collections;
 
 public class Player : MonoBehaviour
 {
-
+    public enum Curses {Invisible, Confused};
 	public float moveTime = 0.1f;           //Time it will take object to move, in seconds.
+	public float time = 0f;
+	public float timerbeat = 1f;
+
 	public LayerMask blockingLayer;         //Layer on which collision will be checked.
 
+	private Vector2 position;
 	private Inputs inputs;
-
+    private Hashtable curses;
+    private KeyCode keyCodeLeft, keyCodeRight, keyCodeUp, keyCodeDown;
+    
+	private BoxCollider2D boxCollider;      //The BoxCollider2D component attached to this object.
 	private Rigidbody2D rb2D;               //The Rigidbody2D component attached to this object.
 	private float inverseMoveTime;          //Used to make movement more efficient.
 
-	public float timerbeat;
-	float timer;
-	bool hasmoved = false;
-
-	public bool isConfused;
-	public int confuseCountdown;
-	public bool isInvisible;
-	public int invisibleCountdown;
-
-	int h;
-	int v;
-
+	public bool hasmoved = false;
 	// Use this for initialization
+
+	public void setKeyCode (KeyCode _keyCodeLeft,
+	                 KeyCode _keyCodeRight,
+	                 KeyCode _keyCodeUp,
+	                 KeyCode _keyCodeDown){
+
+		keyCodeLeft = _keyCodeLeft;
+		keyCodeRight = _keyCodeRight;
+		keyCodeUp    = _keyCodeUp;
+		keyCodeDown  = _keyCodeDown;
+	}
+
 	void Start ()
 	{
+		//Get a component reference to this object's BoxCollider2D
+		boxCollider = GetComponent<BoxCollider2D>();
 		inputs = GetComponent<Inputs>();
 		//Get a component reference to this object's Rigidbody2D
 		rb2D = GetComponent<Rigidbody2D>();
 
 		//By storing the reciprocal of the move time we can use it by multiplying instead of dividing, this is more efficient.
 		inverseMoveTime = 1f / moveTime;
-		timer = 0f;
+		curses = new Hashtable ();
 
-		this.GetComponent<SpriteRenderer>().enabled = false;
+		Curse curseInvisible = new Curse ();
+		curseInvisible.type = Curse.Type.Invisible;
+		curses.Add(Curse.Type.Invisible, curseInvisible);
+
+		Curse curseConfused = new Curse ();
+		curseConfused.type = Curse.Type.Confused;
+		curses.Add(Curse.Type.Confused, curseConfused);
+	}
+
+	public Vector2 getPosition()
+	{
+		return position;
 	}
 
 	void Update ()
 	{
-		timer += Time.deltaTime;
-		
-		if (timer >= (timerbeat * 0.8f) && !hasmoved)
-		{
-			
-			int inputValue;
+		time += Time.deltaTime;
 
-			if (Input.GetKeyDown(KeyCode.LeftArrow))
-			{
-				inputValue = inputs.addDirection(Inputs.Direction.Left);
-				h = -1;
-				v = 0;
-				hasmoved = true;
-			}
-			else if (Input.GetKeyDown(KeyCode.RightArrow))
-			{
-				inputValue = inputs.addDirection(Inputs.Direction.Right);
-				h = 1;
-				v = 0;
-				hasmoved = true;
-			}
-			else if (Input.GetKeyDown(KeyCode.UpArrow))
-			{
-				inputValue = inputs.addDirection(Inputs.Direction.Up);
-				h = 0;
-				v = 1;
-				hasmoved = true;
-			}
-			else if (Input.GetKeyDown(KeyCode.DownArrow))
-			{
-				inputValue = inputs.addDirection(Inputs.Direction.Down);
-				h = 0;
-				v = -1;
-				hasmoved = true;
-			}
-			else
-			{
-				h = 0;
-				v = 0;
-			}
+		if (time < (timerbeat * 0.8f) || hasmoved) {
+			return;
 		}
 
-		if (timer > timerbeat)
-		{
-			if (hasmoved)
-			{
-				if(isConfused)
-				{
-					h = h * -1;
-					v = v * -1;
-					ConfuseCountDwn();
-				}
-				if(isInvisible)
-				{
-					InvisibleCountDwn();
-                }
-
-				Move(h, v);
-				hasmoved = false;
-			}
-			else
-			{
-				//DamagePlayer
-			}
-			timer = 0f;
+		if (Input.GetKeyDown (keyCodeLeft)) { // left
+			inputs.addDirection (Inputs.Direction.Left);
+			position += Vector2.left;
+			hasmoved = true;
+		} else if (Input.GetKeyDown (keyCodeRight)) { // right
+			inputs.addDirection (Inputs.Direction.Right);
+			position += Vector2.right;
+			hasmoved = true;
+        } else if (Input.GetKeyDown (keyCodeUp)) { // up
+			inputs.addDirection (Inputs.Direction.Up);
+			position += Vector2.up;
+			hasmoved = true;
+		} else if (Input.GetKeyDown (keyCodeDown)) { // down
+			inputs.addDirection (Inputs.Direction.Down);
+			position += Vector2.down;
+			hasmoved = true;
 		}
 
-
+//		if (time >= timerbeat) {
+//			time = 0f;
+//		}
 	}
 
-	void InvisibleCountDwn ()
+
+    void setCurseInvisible () {	
+		Curse curseInvisible = (Curse)curses[Curse.Type.Invisible];
+	    curseInvisible.timer = 3;
+    }
+    
+    void setCurseConfused () 
 	{
-		invisibleCountdown--;
-		if(invisibleCountdown <= 0)
-		{
-			isInvisible = false;
-			invisibleCountdown = 0;
+	    Curse curseInvisible = (Curse)curses[Curse.Type.Confused];
+	    curseInvisible.timer = 2;
+    }
 
-			this.GetComponent<SpriteRenderer>().enabled = true;
-		}
-	}
-
-	void ConfuseCountDwn ()
+    void updateCurses ()
 	{
-		confuseCountdown--;
-		if (confuseCountdown <= 0)
-		{
-			isConfused = false;
-			confuseCountdown = 0;
-		}
-	}
+	    foreach (Curse curse in curses){
+			if (curse.timer > 0){
+			    curse.timer--;
+			}
+	    }
+    }
+    
 
-	protected bool Move (int xDir, int yDir)
+
+	public bool Move (int xDir, int yDir)
 	{
-		//Store start position to move from, based on objects current transform position.
-		Vector2 start = transform.position;
-
-		// Calculate end position based on the direction parameters passed in when calling Move.
-		Vector2 end = start + new Vector2(xDir, yDir);
-
-		//Check if anything was hit
-		//If nothing was hit, start SmoothMovement co-routine passing in the Vector2 end as destination
-		StartCoroutine(SmoothMovement(end));
+	
+		StartCoroutine(SmoothMovement(position));
+		hasmoved = false;
+		time = 0;
 		return true;
 	}
 

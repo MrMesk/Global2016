@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class Inputs : MonoBehaviour {
 	
     // Use this for initialization
-    public enum Direction {Left, Right, Up, Down};
+    public enum Direction {Left, Right, Up, Down, None};
     private List<Direction> lastInputs = new List<Direction> ();
     private List<Direction>[] dances = new List<Direction>[3];
 	
@@ -86,7 +86,7 @@ public class Inputs : MonoBehaviour {
 	public int addDirection (Direction d)
 	{
 		lastInputs.Add(d);
-
+		Debug.Log ("addDirection");
 		if (lastInputs.Count >= 5)
 		{
 			lastInputs.RemoveAt(0);

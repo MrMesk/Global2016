@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System;
+using System.Collections ;
 using System.Collections.Generic;       //Allows us to use Lists.
 using Random = UnityEngine.Random;      //Tells Random to use the Unity Engine random number generator.
 
@@ -20,13 +21,18 @@ public class BoardManager : MonoBehaviour
 			maximum = max;
 		}
 	}
+	private float time;
+	private GameObject[] players = new GameObject[4];
+	public GameObject player;	
 
+	public float timerbeat = 1;
 	public static int columns = 12;                                         //Number of columns in our game board.
 	public static int rows = 10;                                            //Number of rows in our game board.
 	public Count wallCount = new Count(5, 9);                      //Lower and upper limit for our random number of walls per level.
 	public GameObject[] floorTiles;                                 //Array of floor prefabs.
 	public GameObject[] wallTiles;                                  //Array of wall prefabs.
 	public GameObject[] outerWallTiles;                             //Array of outer tile prefabs.
+
 
 	public enum tileTypes
 	{
@@ -40,10 +46,46 @@ public class BoardManager : MonoBehaviour
 	private Transform boardHolder;                                  //A variable to store a reference to the transform of our Board object.
 	private List<Vector3> gridPositions = new List<Vector3>();   //A list of possible locations to place tiles.
 
+	void Start(){
+		for (int i = 0; i < 4; i++) 
+		{
+			Debug.Log("Instantiate player " + i);
+			
+			players[i] = Instantiate(player, player.transform.position, player.transform.rotation) as GameObject;
+
+		}
+		{
+			Player player = players [0].GetComponent<Player> ();
+			player.setKeyCode (KeyCode.LeftArrow,
+		                  KeyCode.RightArrow,
+		                  KeyCode.UpArrow,
+		                  KeyCode.DownArrow);
+		}
+		{
+			Player player = players [1].GetComponent<Player> ();
+			player.setKeyCode (KeyCode.Q,
+			                   KeyCode.D,
+			                   KeyCode.Z,
+			                   KeyCode.S);
+		}		{
+			Player player = players [2].GetComponent<Player> ();
+			player.setKeyCode (KeyCode.Keypad4,
+			                   KeyCode.Keypad6,
+			                   KeyCode.Keypad8,
+			                   KeyCode.Keypad2);
+		}		{
+			Player player = players [3].GetComponent<Player> ();
+			player.setKeyCode (KeyCode.K,
+			                   KeyCode.M,
+			                   KeyCode.O,
+			                   KeyCode.L);
+		}
+	}
 
 	//Clears our list gridPositions and prepares it to generate a new board.
 	void InitialiseList ()
 	{
+
 		//Clear our list gridPositions.
 		gridPositions.Clear();
 
@@ -61,7 +103,28 @@ public class BoardManager : MonoBehaviour
 		}
 	}
 
-
+	void Update ()
+	{
+		time += Time.deltaTime;
+		if (time >= timerbeat) {
+			bool n = false;
+			
+			foreach(GameObject player in players)
+			{
+				Player _player = player.GetComponent<Player>();
+//				if (!_player.hasmoved){
+//					continue;
+//				}
+				Vector2 position = _player.getPosition();
+				Debug.Log("moving players  " + position);
+				
+				board[(int)position.x, (int)position.y] = tileTypes.player;
+				_player.Move((int)position.x, (int)position.y);
+			}
+			time = 0f;	
+		}
+	}
+	
 	//Sets up the outer walls and floor (background) of the game board.
 	void BoardSetup ()
 	{
