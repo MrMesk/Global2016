@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class Inputs : MonoBehaviour {
 	
     // Use this for initialization
-    enum Direction {Left, Right, Up, Down};
+    public enum Direction {Left, Right, Up, Down};
     private List<Direction> lastInputs = new List<Direction> ();
     private List<Direction>[] dances = new List<Direction>[3];
 	
@@ -18,7 +18,8 @@ public class Inputs : MonoBehaviour {
 	Debug.Log (lastInputs.Count);
     }
 
-    string directionToString (Direction d) {
+    string directionToString (Direction d)
+	{
 	string s = "";
 	switch(d){
 	    case Direction.Down:
@@ -38,75 +39,60 @@ public class Inputs : MonoBehaviour {
     }
 
     // Update is called once per frame
-    int findDance (){
-		
-	bool match = false;
-	int danceID;
+    public int findDance ()
+	{
+		bool match = false;
+		int danceID;
 
-	for (danceID = 0; danceID < dances.Length; danceID++) {
-	    List<Direction> dance = dances [danceID];
-	    int i = lastInputs.Count-1;
-	    match = true;
+		for (danceID = 0; danceID < dances.Length; danceID++)
+		{
+			List<Direction> dance = dances[danceID];
+			int i = lastInputs.Count - 1;
+			match = true;
 
-	    foreach (Direction direction in dance) {
-		if(dance.Count > lastInputs.Count) {
-		    match = false;
-		    break;
+			foreach (Direction direction in dance)
+			{
+				if (dance.Count > lastInputs.Count)
+				{
+					match = false;
+					break;
+				}
+
+				if (direction != lastInputs[i])
+				{
+					match = false;
+					break;
+				}
+				i--;
+			}
+			if (match)
+			{
+				Debug.Log("We have a match " + danceID);
+				lastInputs.Clear();
+				break;
+			}
+		}
+		if (match)
+		{
+			return danceID;
+		}
+		else
+		{
+			return -1;
+		}
+	}
+
+
+	public int addDirection (Direction d)
+	{
+		lastInputs.Add(d);
+
+		if (lastInputs.Count >= 5)
+		{
+			lastInputs.RemoveAt(0);
 		}
 
-		if (direction != lastInputs [i]) {
-		    match = false;
-		    break;
-		}
-		i--;
-	    }
-	    if (match) {
-		Debug.Log ("We have a match " + danceID);
-		lastInputs.Clear();
-		break;
-	    }
-	}	
-	if (match) {
-	    return danceID;
-	} else {
-	    return -1;
+		return findDance();
 	}
-    }
-
-
-    int addDirection (Direction d) {
-	lastInputs.Add (d);
-	
-	if(lastInputs.Count >= 5) {
-	    lastInputs.RemoveAt(0);	
-	}
-
-	return findDance();
-    }
-	
-    // void Update () 
-    //{
-    // 	bool newInput = false;
-    // 	if(Input.GetKeyDown(KeyCode.LeftArrow)) {
-    // 	    lastInputs.Add (Direction.Left);
-    // 	    newInput = true;
-    // 	} else if(Input.GetKeyDown(KeyCode.RightArrow)) {
-    // 	    lastInputs.Add (Direction.Right);
-    // 	    newInput = true;
-    // 	} else if(Input.GetKeyDown(KeyCode.UpArrow)) {
-    // 	    lastInputs.Add (Direction.Up);
-    // 	    newInput = true;
-    // 	} else if(Input.GetKeyDown(KeyCode.DownArrow)){
-    // 	    lastInputs.Add (Direction.Down);
-    // 	    newInput = true;
-    // 	}
-
-	// string s = ">";
-	// foreach (Direction d in lastInputs) {
-	//     s += directionToString(d);
-	// }
-	// Debug.Log (s);
-
-   // }
 	
 }

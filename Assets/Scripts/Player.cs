@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
 	public float moveTime = 0.1f;           //Time it will take object to move, in seconds.
 	public LayerMask blockingLayer;         //Layer on which collision will be checked.
 
+	private Inputs inputs;
 
 	private BoxCollider2D boxCollider;      //The BoxCollider2D component attached to this object.
 	private Rigidbody2D rb2D;               //The Rigidbody2D component attached to this object.
@@ -15,12 +16,12 @@ public class Player : MonoBehaviour
 	public float timerbeat;
 	float timer;
 	bool hasmoved = false;
-											// Use this for initialization
+	// Use this for initialization
 	void Start ()
 	{
 		//Get a component reference to this object's BoxCollider2D
 		boxCollider = GetComponent<BoxCollider2D>();
-
+		inputs = GetComponent<Inputs>();
 		//Get a component reference to this object's Rigidbody2D
 		rb2D = GetComponent<Rigidbody2D>();
 
@@ -29,48 +30,63 @@ public class Player : MonoBehaviour
 		timer = 0f;
 	}
 
-	void Update()
+	void Update ()
 	{
 		timer += Time.deltaTime;
 
-		if(timer >= (timerbeat * 0.8f) && !hasmoved )
+		int h = 0;
+		int v = 0;
+
+		if (timer >= (timerbeat * 0.8f) && !hasmoved)
 		{
 
-			int horizontal = 0;
-			int vertical = 0;
+			int inputValue;
 
-			horizontal = (int)Input.GetAxisRaw("Horizontal");
-			vertical = (int)Input.GetAxisRaw("Vertical");
-
-			Debug.Log("Horizontal : " + horizontal);
-			Debug.Log("Vertical : " + vertical);
-
-			if (horizontal != 0)
+			if (Input.GetKeyDown(KeyCode.LeftArrow))
 			{
-				vertical = 0;
-			}
-
-			if (vertical != 0 || horizontal != 0)
-			{
+				inputValue = inputs.addDirection(Inputs.Direction.Left);
+				h = -1;
+				v = 0;
 				hasmoved = true;
-				Move(horizontal, vertical);
+			}
+			else if (Input.GetKeyDown(KeyCode.RightArrow))
+			{
+				inputValue = inputs.addDirection(Inputs.Direction.Right);
+				h = 1;
+				v = 0;
+				hasmoved = true;
+			}
+			else if (Input.GetKeyDown(KeyCode.UpArrow))
+			{
+				inputValue = inputs.addDirection(Inputs.Direction.Up);
+				h = 0;
+				v = 1;
+				hasmoved = true;
+			}
+			else if (Input.GetKeyDown(KeyCode.DownArrow))
+			{
+				inputValue = inputs.addDirection(Inputs.Direction.Down);
+				h = 0;
+				v = -1;
+				hasmoved = true;
 			}
 		}
-		if(timer > timerbeat)
+
+		if (timer > timerbeat)
 		{
-			if(hasmoved)
+			if (hasmoved)
 			{
+				Move(h, v);
 				hasmoved = false;
 			}
 			else
 			{
 				//DamagePlayer
 			}
-
 			timer = 0f;
-
 		}
-		
+
+
 	}
 
 	protected bool Move (int xDir, int yDir)
