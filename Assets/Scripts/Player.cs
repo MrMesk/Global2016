@@ -9,7 +9,6 @@ public class Player : MonoBehaviour
 
 	private Inputs inputs;
 
-	private BoxCollider2D boxCollider;      //The BoxCollider2D component attached to this object.
 	private Rigidbody2D rb2D;               //The Rigidbody2D component attached to this object.
 	private float inverseMoveTime;          //Used to make movement more efficient.
 
@@ -28,8 +27,6 @@ public class Player : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-		//Get a component reference to this object's BoxCollider2D
-		boxCollider = GetComponent<BoxCollider2D>();
 		inputs = GetComponent<Inputs>();
 		//Get a component reference to this object's Rigidbody2D
 		rb2D = GetComponent<Rigidbody2D>();

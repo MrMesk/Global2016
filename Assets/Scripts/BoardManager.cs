@@ -21,7 +21,6 @@ public class BoardManager : MonoBehaviour
 		}
 	}
 
-
 	public int columns = 8;                                         //Number of columns in our game board.
 	public int rows = 8;                                            //Number of rows in our game board.
 	public Count wallCount = new Count(5, 9);                      //Lower and upper limit for our random number of walls per level.
@@ -72,8 +71,7 @@ public class BoardManager : MonoBehaviour
 					toInstantiate = outerWallTiles[Random.Range(0, outerWallTiles.Length)];
 
 				//Instantiate the GameObject instance using the prefab chosen for toInstantiate at the Vector3 corresponding to current grid position in loop, cast it to GameObject.
-				GameObject instance =
-					Instantiate(toInstantiate, new Vector3(x, y, 0f), Quaternion.identity) as GameObject;
+				GameObject instance = Instantiate(toInstantiate, new Vector3(x, y, 0f), Quaternion.identity) as GameObject;
 
 				//Set the parent of our newly instantiated object instance to boardHolder, this is just organizational to avoid cluttering hierarchy.
 				instance.transform.SetParent(boardHolder);
