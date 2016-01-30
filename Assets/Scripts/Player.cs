@@ -16,6 +16,15 @@ public class Player : MonoBehaviour
 	public float timerbeat;
 	float timer;
 	bool hasmoved = false;
+
+	public bool isConfused;
+	public int confuseCountdown;
+	public bool isInvisible;
+	public int invisibleCountdown;
+
+	int h;
+	int v;
+
 	// Use this for initialization
 	void Start ()
 	{
@@ -28,18 +37,17 @@ public class Player : MonoBehaviour
 		//By storing the reciprocal of the move time we can use it by multiplying instead of dividing, this is more efficient.
 		inverseMoveTime = 1f / moveTime;
 		timer = 0f;
+
+		this.GetComponent<SpriteRenderer>().enabled = false;
 	}
 
 	void Update ()
 	{
 		timer += Time.deltaTime;
-
-		int h = 0;
-		int v = 0;
-
+		
 		if (timer >= (timerbeat * 0.8f) && !hasmoved)
 		{
-
+			
 			int inputValue;
 
 			if (Input.GetKeyDown(KeyCode.LeftArrow))
@@ -70,12 +78,28 @@ public class Player : MonoBehaviour
 				v = -1;
 				hasmoved = true;
 			}
+			else
+			{
+				h = 0;
+				v = 0;
+			}
 		}
 
 		if (timer > timerbeat)
 		{
 			if (hasmoved)
 			{
+				if(isConfused)
+				{
+					h = h * -1;
+					v = v * -1;
+					ConfuseCountDwn();
+				}
+				if(isInvisible)
+				{
+					InvisibleCountDwn();
+                }
+
 				Move(h, v);
 				hasmoved = false;
 			}
@@ -87,6 +111,28 @@ public class Player : MonoBehaviour
 		}
 
 
+	}
+
+	void InvisibleCountDwn ()
+	{
+		invisibleCountdown--;
+		if(invisibleCountdown <= 0)
+		{
+			isInvisible = false;
+			invisibleCountdown = 0;
+
+			this.GetComponent<SpriteRenderer>().enabled = true;
+		}
+	}
+
+	void ConfuseCountDwn ()
+	{
+		confuseCountdown--;
+		if (confuseCountdown <= 0)
+		{
+			isConfused = false;
+			confuseCountdown = 0;
+		}
 	}
 
 	protected bool Move (int xDir, int yDir)
