@@ -21,12 +21,21 @@ public class BoardManager : MonoBehaviour
 		}
 	}
 
-	public int columns = 8;                                         //Number of columns in our game board.
-	public int rows = 8;                                            //Number of rows in our game board.
+	public static int columns = 12;                                         //Number of columns in our game board.
+	public static int rows = 10;                                            //Number of rows in our game board.
 	public Count wallCount = new Count(5, 9);                      //Lower and upper limit for our random number of walls per level.
 	public GameObject[] floorTiles;                                 //Array of floor prefabs.
 	public GameObject[] wallTiles;                                  //Array of wall prefabs.
 	public GameObject[] outerWallTiles;                             //Array of outer tile prefabs.
+
+	public enum tileTypes
+	{
+		floor,
+		hole,
+		player
+	}
+
+	public tileTypes[,] board = new tileTypes[columns, rows];
 
 	private Transform boardHolder;                                  //A variable to store a reference to the transform of our Board object.
 	private List<Vector3> gridPositions = new List<Vector3>();   //A list of possible locations to place tiles.
@@ -46,6 +55,8 @@ public class BoardManager : MonoBehaviour
 			{
 				//At each index add a new Vector3 to our list with the x and y coordinates of that position.
 				gridPositions.Add(new Vector3(x, y, 0f));
+				//Debug.Log("x : " + x + " y : " + y);
+				board[x, y] = tileTypes.floor;
 			}
 		}
 	}
@@ -89,6 +100,7 @@ public class BoardManager : MonoBehaviour
 		//Declare a variable of type Vector3 called randomPosition, set it's value to the entry at randomIndex from our List gridPositions.
 		Vector3 randomPosition = gridPositions[randomIndex];
 
+		board[(int)randomPosition.x, (int)randomPosition.y] = tileTypes.hole;
 		//Remove the entry at randomIndex from the list so that it can't be re-used.
 		gridPositions.RemoveAt(randomIndex);
 
