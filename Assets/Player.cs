@@ -41,6 +41,8 @@ public class Player : MonoBehaviour
 			horizontal = (int)Input.GetAxisRaw("Horizontal");
 			vertical = (int)Input.GetAxisRaw("Horizontal");
 
+			Debug.Log("Horizontal : " + horizontal);
+			Debug.Log("Vertical : " + vertical);
 			if (horizontal != 0)
 			{
 				vertical = 0;
@@ -49,45 +51,38 @@ public class Player : MonoBehaviour
 			if (vertical != 0 || horizontal != 0)
 			{
 				hasmoved = true;
-				AttemptMove(horizontal, vertical);
+				Move(horizontal, vertical);
 			}
 		}
 		if(timer > timerbeat)
 		{
-			//DamagePlayer
+			if(hasmoved)
+			{
+				hasmoved = false;
+			}
+			else
+			{
+				//DamagePlayer
+			}
+
+			timer = 0f;
+
 		}
 		
 	}
 
-	protected bool Move (int xDir, int yDir, out RaycastHit2D hit)
+	protected bool Move (int xDir, int yDir)
 	{
 		//Store start position to move from, based on objects current transform position.
 		Vector2 start = transform.position;
 
 		// Calculate end position based on the direction parameters passed in when calling Move.
-		Vector2 end = start + new Vector2(xDir, yDir) * 0.8f;
-
-		//Disable the boxCollider so that linecast doesn't hit this object's own collider.
-		boxCollider.enabled = false;
-
-		//Cast a line from start point to end point checking collision on blockingLayer.
-		hit = Physics2D.Linecast(start, end, blockingLayer);
-
-		//Re-enable boxCollider after linecast
-		boxCollider.enabled = true;
+		Vector2 end = start + new Vector2(xDir, yDir);
 
 		//Check if anything was hit
-		if (hit.transform == null)
-		{
-			//If nothing was hit, start SmoothMovement co-routine passing in the Vector2 end as destination
-			StartCoroutine(SmoothMovement(end));
-
-			//Return true to say that Move was successful
-			return true;
-		}
-
-		//If something was hit, return false, Move was unsuccesful.
-		return false;
+		//If nothing was hit, start SmoothMovement co-routine passing in the Vector2 end as destination
+		StartCoroutine(SmoothMovement(end));
+		return true;
 	}
 
 	//Co-routine for moving units from one space to next, takes a parameter end to specify where to move to.
@@ -114,31 +109,5 @@ public class Player : MonoBehaviour
 		}
 	}
 
-	//The virtual keyword means AttemptMove can be overridden by inheriting classes using the override keyword.
-	//AttemptMove takes a generic parameter T to specify the type of component we expect our unit to interact with if blocked (Player for Enemies, Wall for Player).
-	void AttemptMove(int xDir, int yDir)
-	{
-		//Hit will store whatever our linecast hits when Move is called.
-		RaycastHit2D hit;
-		bool isHit = false;
-		//Set canMove to true if Move was successful, false if failed.
-		bool canMove = Move(xDir, yDir, out hit);
-
-		//Check if nothing was hit by linecast
-		if (hit.transform == null)
-			//If nothing was hit, return and don't execute further code.
-			return;
-		else
-			isHit = true;
-
-		//Get a component reference to the component of type T attached to the object that was hit
-		
-
-		//If canMove is false and hitComponent is not equal to null, meaning MovingObject is blocked and has hit something it can interact with.
-		if (!canMove && isHit)
-
-			//Call the OnCantMove function and pass it hitComponent as a parameter.
-			return;
-	}
 
 }
