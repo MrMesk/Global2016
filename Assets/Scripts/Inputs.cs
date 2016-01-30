@@ -73,36 +73,33 @@ public class Inputs : MonoBehaviour {
 	}
     }
 
+
+    int addDirection (Direction d) {
+	lastInputs.Add (d);
 	
-    void Update ()
-	{
-
-	bool newInput = false;
-	if(Input.GetKeyDown(KeyCode.LeftArrow)) {
-	    lastInputs.Add (Direction.Left);
-	    newInput = true;
-	} else if(Input.GetKeyDown(KeyCode.RightArrow)) {
-	    lastInputs.Add (Direction.Right);
-	    newInput = true;
-	} else if(Input.GetKeyDown(KeyCode.UpArrow)) {
-	    lastInputs.Add (Direction.Up);
-	    newInput = true;
-	} else if(Input.GetKeyDown(KeyCode.DownArrow)){
-	    lastInputs.Add (Direction.Down);
-	    newInput = true;
-	}
-
-	if (!newInput) {
-	    return;
-	}
-
-
-	if(lastInputs.Count >= 5)
-		{
+	if(lastInputs.Count >= 5) {
 	    lastInputs.RemoveAt(0);	
 	}
 
-	findDance (); // returns the dance id or -1
+	return findDance();
+    }
+	
+    // void Update () 
+    //{
+    // 	bool newInput = false;
+    // 	if(Input.GetKeyDown(KeyCode.LeftArrow)) {
+    // 	    lastInputs.Add (Direction.Left);
+    // 	    newInput = true;
+    // 	} else if(Input.GetKeyDown(KeyCode.RightArrow)) {
+    // 	    lastInputs.Add (Direction.Right);
+    // 	    newInput = true;
+    // 	} else if(Input.GetKeyDown(KeyCode.UpArrow)) {
+    // 	    lastInputs.Add (Direction.Up);
+    // 	    newInput = true;
+    // 	} else if(Input.GetKeyDown(KeyCode.DownArrow)){
+    // 	    lastInputs.Add (Direction.Down);
+    // 	    newInput = true;
+    // 	}
 
 	// string s = ">";
 	// foreach (Direction d in lastInputs) {
@@ -110,6 +107,6 @@ public class Inputs : MonoBehaviour {
 	// }
 	// Debug.Log (s);
 
-    }
+   // }
 	
 }
