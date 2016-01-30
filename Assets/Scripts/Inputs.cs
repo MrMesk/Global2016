@@ -74,7 +74,9 @@ public class Inputs : MonoBehaviour {
     }
 
 	
-    void Update () {
+    void Update ()
+	{
+
 	bool newInput = false;
 	if(Input.GetKeyDown(KeyCode.LeftArrow)) {
 	    lastInputs.Add (Direction.Left);
@@ -94,7 +96,9 @@ public class Inputs : MonoBehaviour {
 	    return;
 	}
 
-	if(lastInputs.Count >= 5) {
+
+	if(lastInputs.Count >= 5)
+		{
 	    lastInputs.RemoveAt(0);	
 	}
 

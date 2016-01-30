@@ -35,6 +35,7 @@ public class Player : MonoBehaviour
 
 		if(timer >= (timerbeat * 0.8f) && !hasmoved )
 		{
+
 			int horizontal = 0;
 			int vertical = 0;
 
@@ -43,6 +44,7 @@ public class Player : MonoBehaviour
 
 			Debug.Log("Horizontal : " + horizontal);
 			Debug.Log("Vertical : " + vertical);
+
 			if (horizontal != 0)
 			{
 				vertical = 0;
