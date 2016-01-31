@@ -16,6 +16,12 @@ public class Player : MonoBehaviour
     private KeyCode keyCodeLeft, keyCodeRight, keyCodeUp, keyCodeDown;
 	private KeyCode keyCodeLeftBackup, keyCodeRightBackup, keyCodeUpBackup, keyCodeDownBackup;
 
+	public AudioClip fallSound;
+	public AudioClip deathSound;
+	AudioSource audioPlayer;
+
+	Animator anim;
+
 	private BoxCollider2D boxCollider;      //The BoxCollider2D component attached to this object.
 	private Rigidbody2D rb2D;               //The Rigidbody2D component attached to this object.
 	private float inverseMoveTime;          //Used to make movement more efficient.
@@ -42,6 +48,8 @@ public class Player : MonoBehaviour
 
 	void Start ()
 	{
+		anim = GetComponent<Animator>();
+		audioPlayer = GetComponent<AudioSource>();
 		//Get a component reference to this object's BoxCollider2D
 		boxCollider = GetComponent<BoxCollider2D>();
 		inputs = GetComponent<Inputs>();
@@ -61,9 +69,32 @@ public class Player : MonoBehaviour
 		curses.Add(Curse.Type.Confused, curseConfused);
 	}
 
-	public void faireCrever (){
+	public void faireCrever ()
+	{
 		Debug.Log ("I am dying");
+		audioPlayer.PlayOneShot(deathSound);
 		this.GetComponent<Renderer> ().material.color = Color.cyan;
+	}
+
+	public void moveLeftAnim()
+	{
+		anim.SetTrigger("MoveLeft");
+	}
+	public void moveRightAnim ()
+	{
+		anim.SetTrigger("MoveRight");
+	}
+	public void moveUpAnim ()
+	{
+		anim.SetTrigger("MoveUp");
+	}
+	public void moveDownAnim ()
+	{
+		anim.SetTrigger("MoveDown");
+	}
+	public void fallAnim ()
+	{
+		anim.SetTrigger("Falling");
 	}
 
 	public Vector2 getPosition()
