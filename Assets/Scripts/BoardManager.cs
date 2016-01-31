@@ -90,7 +90,7 @@ public class BoardManager : MonoBehaviour
 		gridPositions.Clear();
 
 		//Loop through x axis (columns).
-		for (int x = 1; x < columns - 1; x++)
+		for (int x = 0; x < columns - 1; x++)
 		{
 			//Within each column, loop through y axis (rows).
 			for (int y = 1; y < rows - 1; y++)
@@ -141,9 +141,16 @@ public class BoardManager : MonoBehaviour
 				Vector2 position = _player.getPosition();
 				_player.Move();
 
+				Debug.Log ("pos " + position);
+				if (position.x == -1 || position.x == columns || position.y == -1 || position.y == rows){
+					_player.faireCrever();
+					continue;
+				}
+
 				if (board[(int)position.x, (int)position.y] == tileTypes.hole){
 					Debug.Log("Hole ? " + position.x + " , " + (int)position.y + " > " + board[(int)position.x, (int)position.y] + " == " + tileTypes.hole);
-					player.GetComponent<Renderer> ().enabled = false;
+					_player.faireCrever();
+					continue;
 				}
 
 				Inputs.DanceID castID = _player.executeDance();

@@ -61,6 +61,11 @@ public class Player : MonoBehaviour
 		curses.Add(Curse.Type.Confused, curseConfused);
 	}
 
+	public void faireCrever (){
+
+		Debug.Log ("I am dying");
+	}
+
 	public Vector2 getPosition()
 	{
 		return position;
