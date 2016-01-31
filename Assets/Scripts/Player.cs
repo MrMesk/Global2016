@@ -94,6 +94,7 @@ public class Player : MonoBehaviour
 	}
 	public void fallAnim ()
 	{
+		audioPlayer.PlayOneShot(fallSound);
 		anim.SetTrigger("Falling");
 	}
 
