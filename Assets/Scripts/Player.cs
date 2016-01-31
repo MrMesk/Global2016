@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
 
 	public LayerMask blockingLayer;         //Layer on which collision will be checked.
 
-	private Vector2 position;
+	public Vector2 position;
 	private Inputs inputs;
     public Hashtable curses;
     private KeyCode keyCodeLeft, keyCodeRight, keyCodeUp, keyCodeDown;
@@ -35,7 +35,7 @@ public class Player : MonoBehaviour
 	                 KeyCode _keyCodeRight,
 	                 KeyCode _keyCodeUp,
 	                 KeyCode _keyCodeDown){
-
+        Debug.Log("first key " + _keyCodeLeft );
 		keyCodeLeft  = _keyCodeLeft;
 		keyCodeRight = _keyCodeRight;
 		keyCodeUp    = _keyCodeUp;
@@ -49,6 +49,8 @@ public class Player : MonoBehaviour
 
 	void Start ()
 	{
+        position = transform.position;
+        Debug.Log("PLayer 2");
 		anim = GetComponent<Animator>();
 		audioPlayer = GetComponent<AudioSource>();
 		//Get a component reference to this object's BoxCollider2D
@@ -80,6 +82,7 @@ public class Player : MonoBehaviour
 	public void moveLeftAnim()
 	{
 		anim.SetTrigger("MoveLeft");
+        Debug.Log("Moving left");
 	}
 	public void moveRightAnim ()
 	{
@@ -108,25 +111,31 @@ public class Player : MonoBehaviour
 	void Update ()
 	{
 		time += Time.deltaTime;
-
-		if (time < (timerbeat * 0.8f) || hasmoved) {
+        Debug.Log("update player");
+		if (time < (timerbeat * 0.5f) || hasmoved) {
 			return;
 		}
+
+        Debug.Log("update keys");
 		Inputs.DanceID _danceID = Inputs.DanceID.None; 
 		if (Input.GetKeyDown (keyCodeLeft)) { // left
 			_danceID = inputs.addDirection (Inputs.Direction.Left);
 			position += Vector2.left;
-			hasmoved = true;
+            moveLeftAnim();
+            hasmoved = true;
 		} else if (Input.GetKeyDown (keyCodeRight)) { // right
 			_danceID = inputs.addDirection (Inputs.Direction.Right);
 			position += Vector2.right;
-			hasmoved = true;
+            moveRightAnim();
+            hasmoved = true;
         } else if (Input.GetKeyDown (keyCodeUp)) { // up
 			_danceID = inputs.addDirection (Inputs.Direction.Up);
 			position += Vector2.up;
-			hasmoved = true;
+            moveUpAnim();
+            hasmoved = true;
 		} else if (Input.GetKeyDown (keyCodeDown)) { // down
-			_danceID = inputs.addDirection (Inputs.Direction.Down);
+            moveDownAnim();
+            _danceID = inputs.addDirection (Inputs.Direction.Down);
 			position += Vector2.down;
 			hasmoved = true;
 		}
@@ -233,7 +242,7 @@ public class Player : MonoBehaviour
 			yield return null;
 		}
 
-		Destroy(this.gameObject);
+		//Destroy(this.gameObject);
 	
 	}
 

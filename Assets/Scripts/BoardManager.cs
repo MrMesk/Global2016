@@ -23,9 +23,12 @@ public class BoardManager : MonoBehaviour
 	}
 	private float time;
 	public List<GameObject> players = new List<GameObject>();
-	public GameObject player;	
+	public GameObject player1;
+    public GameObject player2;
+    public GameObject player3;
+    public GameObject player4;
 
-	public float timerbeat = 1;
+    public float timerbeat = 1;
 	public static int columns = 12;                                         //Number of columns in our game board.
 	public static int rows = 10;                                            //Number of rows in our game board.
 	public Count wallCount = new Count(5, 9);                      //Lower and upper limit for our random number of walls per level.
@@ -47,14 +50,13 @@ public class BoardManager : MonoBehaviour
 	private List<Vector3> gridPositions = new List<Vector3>();   //A list of possible locations to place tiles.
 
 	void Start(){
-		for (int i = 0; i < 4; i++) 
-		{
-			Debug.Log("Instantiate player " + i);
-			
-			players.Add (Instantiate(player, player.transform.position, player.transform.rotation) as GameObject);
 
-		}
-		{
+        players.Add(player1);
+        players.Add(player2);
+        players.Add(player3);
+        players.Add(player4);
+
+        {
 			Player player = players [0].GetComponent<Player> ();
 			player.setKeyCode (KeyCode.LeftArrow,
 		                  KeyCode.RightArrow,
@@ -121,9 +123,14 @@ public class BoardManager : MonoBehaviour
 	}
 
 	void dig () {
+        Vector3 randomPosition = RandomPosition();
 
+        //Choose a random tile from tileArray and assign it to tileChoice
+        GameObject tileChoice = wallTiles[Random.Range(0, wallTiles.Length)];
 
-	}
+        //Instantiate tileChoice at the position returned by RandomPosition with no change in rotation
+        Instantiate(tileChoice, randomPosition, Quaternion.identity);
+    }
 
 	void Update ()
 	{
@@ -171,6 +178,9 @@ public class BoardManager : MonoBehaviour
 						}
 					}
 					break;
+                    case Inputs.DanceID.Dig:
+                        dig();
+                        break;
 				default:
 					break;
 				}
@@ -235,7 +245,8 @@ public class BoardManager : MonoBehaviour
 		//Choose a random number of objects to instantiate within the minimum and maximum limits
 		int objectCount = Random.Range(minimum, maximum + 1);
 
-		//Instantiate objects until the randomly chosen limit objectCount is reached
+        //Instantiate objects until the randomly chosen limit objectCount is reached
+        objectCount = 0;
 		for (int i = 0; i < objectCount; i++)
 		{
 			//Choose a position for randomPosition by getting a random position from our list of available Vector3s stored in gridPosition
