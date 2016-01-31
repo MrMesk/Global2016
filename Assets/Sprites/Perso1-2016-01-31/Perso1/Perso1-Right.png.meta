@@ -1,0 +1,133 @@
+fileFormatVersion: 2
+guid: b29b7d8f5ec3471458f53f73a55a35e7
+timeCreated: 1454242780
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Perso1-Right_0
+    21300002: Perso1-Right_1
+    21300004: Perso1-Right_2
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 512
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 400
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Perso1-Right_0
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 0
+        width: 265
+        height: 562
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 70.7377, y: 110.5}
+        - {x: 51.7377, y: 147.5}
+        - {x: -50.2623, y: 147.5}
+        - {x: -69.2623, y: 119.5}
+        - {x: -69.2623, y: 34.5}
+        - {x: -55.2623, y: -82.5}
+        - {x: -30.262299, y: -147.5}
+        - {x: 29.737701, y: -147.5}
+        - {x: 47.7377, y: -6.5}
+        - {x: 60.7377, y: 13.5}
+        - {x: 70.7377, y: 58.5}
+    - name: Perso1-Right_1
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 0
+        width: 328
+        height: 562
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 86.9754, y: 13.5}
+        - {x: 51.975403, y: 15.5}
+        - {x: 59.975403, y: 96.5}
+        - {x: 44.975403, y: 147.5}
+        - {x: -86.0246, y: 147.5}
+        - {x: -86.0246, y: -147.5}
+        - {x: 19.975403, y: -147.5}
+        - {x: 86.9754, y: -23.5}
+    - name: Perso1-Right_2
+      rect:
+        serializedVersion: 2
+        x: 632
+        y: 0
+        width: 332
+        height: 559
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 13.040955, y: -71}
+        - {x: 88.040955, y: 7}
+        - {x: 88.040955, y: 24}
+        - {x: 81.040955, y: 28}
+        - {x: 66.040955, y: 86}
+        - {x: 30.040955, y: 147}
+        - {x: -57.959045, y: 147}
+        - {x: -69.959045, y: 144}
+        - {x: -86.959045, y: 121}
+        - {x: -86.959045, y: -32}
+        - {x: -48.959045, y: -147}
+        - {x: 9.040955, y: -147}
+        - {x: 9.040955, y: -146}
+        - {x: 15.040955, y: -97}
+        - {x: 15.040955, y: -80}
+      - - {x: -86.959045, y: 8}
+        - {x: -86.959045, y: -4}
+        - {x: -83.959045, y: -3}
+        - {x: -82.959045, y: 0}
+        - {x: -82.959045, y: 5}
+        - {x: -85.959045, y: 8}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

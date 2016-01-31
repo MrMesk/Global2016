@@ -1,0 +1,157 @@
+fileFormatVersion: 2
+guid: 58be82ed7de265b4abd8ac408199e71d
+timeCreated: 1454242821
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Perso1-Up_0
+    21300002: Perso1-Up_1
+    21300004: Perso1-Up_2
+    21300006: Perso1-Up_3
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 512
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 400
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Perso1-Up_0
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 0
+        width: 266
+        height: 561
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 53.484848, y: 23.5}
+        - {x: 53.484848, y: 90.5}
+        - {x: 41.484848, y: 110.5}
+        - {x: -45.515152, y: 110.5}
+        - {x: -52.515152, y: 108.5}
+        - {x: -52.515152, y: -48.5}
+        - {x: -34.515152, y: -110.5}
+        - {x: -7.515152, y: -110.5}
+        - {x: -6.515152, y: -109.5}
+        - {x: -6.515152, y: -93.5}
+        - {x: -1.515152, y: -110.5}
+        - {x: 26.484848, y: -110.5}
+    - name: Perso1-Up_1
+      rect:
+        serializedVersion: 2
+        x: 290
+        y: 0
+        width: 335
+        height: 561
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 65.742424, y: -30.5}
+        - {x: 66.742424, y: -26.5}
+        - {x: 66.742424, y: 98.5}
+        - {x: 47.742424, y: 110.5}
+        - {x: -41.257576, y: 110.5}
+        - {x: -54.257576, y: 97.5}
+        - {x: -48.257576, y: 40.5}
+        - {x: -46.257576, y: 25.5}
+        - {x: -66.257576, y: 0.5}
+        - {x: -66.257576, y: -19.5}
+        - {x: -45.257576, y: -110.5}
+        - {x: 25.742424, y: -110.5}
+        - {x: 28.742424, y: -69.5}
+        - {x: 28.742424, y: -61.5}
+    - name: Perso1-Up_2
+      rect:
+        serializedVersion: 2
+        x: 630
+        y: 0
+        width: 327
+        height: 561
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 64.68182, y: 30.5}
+        - {x: 64.68182, y: 86.5}
+        - {x: 45.681824, y: 110.5}
+        - {x: -35.318176, y: 110.5}
+        - {x: -57.318176, y: 71.5}
+        - {x: -64.31818, y: 57.5}
+        - {x: -64.31818, y: -58.5}
+        - {x: -26.318176, y: -110.5}
+        - {x: 34.681824, y: -110.5}
+        - {x: 64.68182, y: -36.5}
+        - {x: 64.68182, y: 16.5}
+        - {x: 55.681824, y: 14.5}
+    - name: Perso1-Up_3
+      rect:
+        serializedVersion: 2
+        x: 957
+        y: 0
+        width: 335
+        height: 561
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 66, y: -29.5}
+        - {x: 66, y: -1.5}
+        - {x: 58, y: 1.5}
+        - {x: 64, y: 73.5}
+        - {x: 40, y: 110.5}
+        - {x: -31, y: 110.5}
+        - {x: -51, y: 80.5}
+        - {x: -66, y: 25.5}
+        - {x: -66, y: -57.5}
+        - {x: -27, y: -110.5}
+        - {x: -9, y: -110.5}
+        - {x: -6, y: -105.5}
+        - {x: 6, y: -110.5}
+        - {x: 26, y: -110.5}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

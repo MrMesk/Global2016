@@ -1,0 +1,154 @@
+fileFormatVersion: 2
+guid: 5fe83017beb89eb41a88cd3f58f2ef01
+timeCreated: 1454242712
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Perso1-Left_0
+    21300002: Perso1-Left_1
+    21300004: Perso1-Left_2
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 512
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 400
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Perso1-Left_0
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 0
+        width: 266
+        height: 563
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 19.786575, y: -138.5}
+        - {x: 68.786575, y: -30.5}
+        - {x: 68.786575, y: 135.5}
+        - {x: 66.786575, y: 144.5}
+        - {x: -48.213425, y: 144.5}
+        - {x: -68.213425, y: 126.5}
+        - {x: -68.213425, y: 15.5}
+        - {x: -35.213425, y: -143.5}
+        - {x: -32.213425, y: -144.5}
+        - {x: -8.213425, y: -144.5}
+        - {x: -8.213425, y: -142.5}
+        - {x: -2.2134247, y: -144.5}
+        - {x: 14.786575, y: -144.5}
+      - - {x: 64.786575, y: 3.5}
+        - {x: 64.786575, y: -0.5}
+        - {x: 67.786575, y: -4.5}
+        - {x: 68.786575, y: -4.5}
+        - {x: 68.786575, y: 6.5}
+        - {x: 67.786575, y: 6.5}
+    - name: Perso1-Left_1
+      rect:
+        serializedVersion: 2
+        x: 284
+        y: 0
+        width: 354
+        height: 563
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 40.1994, y: -141.5}
+        - {x: 43.1994, y: -131.5}
+        - {x: 45.1994, y: -124.5}
+        - {x: 92.1994, y: -117.5}
+        - {x: 92.1994, y: 144.5}
+        - {x: -39.8006, y: 144.5}
+        - {x: -90.8006, y: 63.5}
+        - {x: -90.8006, y: -48.5}
+        - {x: -27.800598, y: -144.5}
+        - {x: 4.199402, y: -144.5}
+        - {x: 8.199402, y: -139.5}
+        - {x: 18.199402, y: -144.5}
+        - {x: 37.1994, y: -144.5}
+      - - {x: 89.1994, y: 12.5}
+        - {x: 91.1994, y: 10.5}
+        - {x: 92.1994, y: 10.5}
+        - {x: 92.1994, y: 21.5}
+        - {x: 89.1994, y: 20.5}
+      - - {x: -90.8006, y: 95.5}
+        - {x: -90.8006, y: 84.5}
+        - {x: -87.8006, y: 85.5}
+        - {x: -86.8006, y: 88.5}
+        - {x: -86.8006, y: 92.5}
+        - {x: -89.8006, y: 95.5}
+    - name: Perso1-Left_2
+      rect:
+        serializedVersion: 2
+        x: 636
+        y: 0
+        width: 351
+        height: 563
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 53.784576, y: -144.5}
+        - {x: 90.78458, y: -34.5}
+        - {x: 90.78458, y: 130.5}
+        - {x: 61.784576, y: 144.5}
+        - {x: -73.21542, y: 144.5}
+        - {x: -90.21542, y: 105.5}
+        - {x: -90.21542, y: -28.5}
+        - {x: -17.215424, y: -144.5}
+        - {x: 5.7845764, y: -144.5}
+        - {x: 7.7845764, y: -143.5}
+        - {x: 10.784576, y: -121.5}
+        - {x: 11.784576, y: -116.5}
+        - {x: 15.784576, y: -144.5}
+      - - {x: -90.21542, y: 84.5}
+        - {x: -87.21542, y: 85.5}
+        - {x: -87.21542, y: 92.5}
+        - {x: -89.21542, y: 94.5}
+        - {x: -90.21542, y: 94.5}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

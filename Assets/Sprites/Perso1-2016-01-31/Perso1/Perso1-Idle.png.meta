@@ -1,0 +1,140 @@
+fileFormatVersion: 2
+guid: fbb0fff77960eec478189e504fa3a5ad
+timeCreated: 1454242696
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Perso1-Idle_0
+    21300002: Perso1-Idle_1
+    21300004: Perso1-Idle_2
+    21300006: Perso1-Idle_3
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 512
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 400
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Perso1-Idle_0
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 0
+        width: 266
+        height: 562
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 47.793907, y: 129}
+        - {x: -61.206093, y: 129}
+        - {x: -61.206093, y: -13}
+        - {x: -34.206093, y: -129}
+        - {x: 16.793907, y: -129}
+        - {x: 34.793907, y: -71}
+        - {x: 61.793907, y: -1}
+        - {x: 61.793907, y: 110}
+    - name: Perso1-Idle_1
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 0
+        width: 277
+        height: 562
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -41.752686, y: 125}
+        - {x: -59.752686, y: 106}
+        - {x: -59.752686, y: -83}
+        - {x: -29.752686, y: -129}
+        - {x: 37.247314, y: -129}
+        - {x: 64.247314, y: 48}
+        - {x: 64.247314, y: 92}
+        - {x: 43.247314, y: 125}
+    - name: Perso1-Idle_2
+      rect:
+        serializedVersion: 2
+        x: 556
+        y: 0
+        width: 273
+        height: 558
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 63.082443, y: 90}
+        - {x: 42.082443, y: 121}
+        - {x: -53.917557, y: 121}
+        - {x: -60.917557, y: 96}
+        - {x: -60.917557, y: -47}
+        - {x: -36.917557, y: -128}
+        - {x: 15.082443, y: -128}
+        - {x: 16.082443, y: -126}
+        - {x: 33.082443, y: -95}
+        - {x: 63.082443, y: 13}
+    - name: Perso1-Idle_3
+      rect:
+        serializedVersion: 2
+        x: 836
+        y: 0
+        width: 270
+        height: 561
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 39.04123, y: 125}
+        - {x: -40.95877, y: 125}
+        - {x: -59.95877, y: 113}
+        - {x: -59.95877, y: -27}
+        - {x: -53.95877, y: -129}
+        - {x: 38.04123, y: -129}
+        - {x: 37.04123, y: -78}
+        - {x: 63.04123, y: -10}
+        - {x: 63.04123, y: 115}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

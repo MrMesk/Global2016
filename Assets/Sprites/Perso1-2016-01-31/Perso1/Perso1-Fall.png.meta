@@ -1,0 +1,122 @@
+fileFormatVersion: 2
+guid: dc08790185c71df4ab1d2f0a79fabe20
+timeCreated: 1454242663
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Perso1-Fall_0
+    21300002: Perso1-Fall_1
+    21300004: Perso1-Fall_2
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 512
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 400
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Perso1-Fall_0
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 0
+        width: 265
+        height: 559
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 24.427551, y: -111}
+        - {x: 54.42755, y: 3}
+        - {x: 54.42755, y: 92}
+        - {x: 37.42755, y: 113}
+        - {x: -51.57245, y: 113}
+        - {x: -53.57245, y: 105}
+        - {x: -53.57245, y: -55}
+        - {x: -34.57245, y: -113}
+        - {x: 16.427551, y: -113}
+    - name: Perso1-Fall_1
+      rect:
+        serializedVersion: 2
+        x: 397
+        y: 0
+        width: 433
+        height: 559
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 41.50447, y: -106}
+        - {x: 27.50447, y: -32}
+        - {x: 88.50447, y: 19}
+        - {x: 88.50447, y: 37}
+        - {x: 73.50447, y: 103}
+        - {x: 40.50447, y: 113}
+        - {x: -43.49553, y: 113}
+        - {x: -87.49553, y: 34}
+        - {x: -87.49553, y: -9}
+        - {x: -36.49553, y: -113}
+        - {x: -19.49553, y: -113}
+        - {x: -16.49553, y: -110}
+        - {x: 10.504471, y: -113}
+        - {x: 39.50447, y: -113}
+    - name: Perso1-Fall_2
+      rect:
+        serializedVersion: 2
+        x: 842
+        y: 0
+        width: 424
+        height: 559
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 86.41504, y: 113}
+        - {x: -76.58496, y: 113}
+        - {x: -85.58496, y: 108}
+        - {x: -85.58496, y: -65}
+        - {x: -46.58496, y: -113}
+        - {x: 86.41504, y: -113}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
