@@ -4,7 +4,7 @@ using System.Collections;
 public class Tempo : MonoBehaviour {
 
     public float tempo = 0.65f;
-    public float resize = 2f;
+    public float resize = 1.2f;
     float timer = 0;
 
     Vector3 sizeInit;
@@ -18,7 +18,7 @@ public class Tempo : MonoBehaviour {
 	void Update () {
 	    if (timer > tempo * 0.8f )
         {
-            transform.localScale = Vector3.Lerp(sizeInit, sizeInit * resize, tempo * 0.2f);
+            transform.localScale = sizeInit * resize;
         }
         if (timer > tempo)
         {
