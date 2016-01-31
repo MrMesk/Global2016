@@ -109,7 +109,7 @@ public class BoardManager : MonoBehaviour
 		{
 			Curse curse = (Curse)player.curses [Curse.Type.Invisible];
 			if (curse.timer == 0) {
-				//go.GetComponent<Renderer> ().enabled = true;
+				go.GetComponent<Renderer> ().enabled = true;
 			}
 		}
 		{
