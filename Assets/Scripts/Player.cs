@@ -62,8 +62,8 @@ public class Player : MonoBehaviour
 	}
 
 	public void faireCrever (){
-
 		Debug.Log ("I am dying");
+		this.GetComponent<Renderer> ().material.color = Color.cyan;
 	}
 
 	public Vector2 getPosition()

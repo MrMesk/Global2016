@@ -22,7 +22,7 @@ public class BoardManager : MonoBehaviour
 		}
 	}
 	private float time;
-	private GameObject[] players = new GameObject[4];
+	public List<GameObject> players = new List<GameObject>();
 	public GameObject player;	
 
 	public float timerbeat = 1;
@@ -51,7 +51,7 @@ public class BoardManager : MonoBehaviour
 		{
 			Debug.Log("Instantiate player " + i);
 			
-			players[i] = Instantiate(player, player.transform.position, player.transform.rotation) as GameObject;
+			players.Add (Instantiate(player, player.transform.position, player.transform.rotation) as GameObject);
 
 		}
 		{
@@ -120,7 +120,7 @@ public class BoardManager : MonoBehaviour
 		}
 	}
 
-	void dig (){
+	void dig () {
 
 
 	}
@@ -141,8 +141,7 @@ public class BoardManager : MonoBehaviour
 				Vector2 position = _player.getPosition();
 				_player.Move();
 
-				Debug.Log ("pos " + position);
-				if (position.x == -1 || position.x == columns || position.y == -1 || position.y == rows){
+				if (position.x <= -1 || position.x >= columns || position.y <= -1 || position.y >= rows){
 					_player.faireCrever();
 					continue;
 				}
@@ -150,6 +149,8 @@ public class BoardManager : MonoBehaviour
 				if (board[(int)position.x, (int)position.y] == tileTypes.hole){
 					Debug.Log("Hole ? " + position.x + " , " + (int)position.y + " > " + board[(int)position.x, (int)position.y] + " == " + tileTypes.hole);
 					_player.faireCrever();
+					player.GetComponent<Renderer>().enabled = false;
+					players.Remove(player);
 					continue;
 				}
 
@@ -245,7 +246,7 @@ public class BoardManager : MonoBehaviour
 
 			//Instantiate tileChoice at the position returned by RandomPosition with no change in rotation
 			Instantiate(tileChoice, randomPosition, Quaternion.identity);
-			Debug.Log("Digging Hole @ " + (int)randomPosition.x + " , " + (int)randomPosition.y);
+			Debug.Log("Digging Hole @ " + randomPosition);
 			board[(int)randomPosition.x, (int)randomPosition.y] = tileTypes.hole;
 
 		}
