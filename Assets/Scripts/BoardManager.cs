@@ -109,7 +109,7 @@ public class BoardManager : MonoBehaviour
 		{
 			Curse curse = (Curse)player.curses [Curse.Type.Invisible];
 			if (curse.timer == 0) {
-				go.GetComponent<Renderer> ().enabled = true;
+				//go.GetComponent<Renderer> ().enabled = true;
 			}
 		}
 		{
@@ -118,6 +118,11 @@ public class BoardManager : MonoBehaviour
 				go.GetComponent<Player> ().setUnCurseConfused();
 			}
 		}
+	}
+
+	void dig (){
+
+
 	}
 
 	void Update ()
@@ -134,9 +139,12 @@ public class BoardManager : MonoBehaviour
 //					continue;
 //				}
 				Vector2 position = _player.getPosition();
+				_player.Move();
 
-				board[(int)position.x, (int)position.y] = tileTypes.player;
-				_player.Move((int)position.x, (int)position.y);
+				if (board[(int)position.x, (int)position.y] == tileTypes.hole){
+					Debug.Log("Hole ? " + position.x + " , " + (int)position.y + " > " + board[(int)position.x, (int)position.y] + " == " + tileTypes.hole);
+					player.GetComponent<Renderer> ().enabled = false;
+				}
 
 				Inputs.DanceID castID = _player.executeDance();
 				switch(castID){
@@ -205,7 +213,6 @@ public class BoardManager : MonoBehaviour
 		//Declare a variable of type Vector3 called randomPosition, set it's value to the entry at randomIndex from our List gridPositions.
 		Vector3 randomPosition = gridPositions[randomIndex];
 
-		board[(int)randomPosition.x, (int)randomPosition.y] = tileTypes.hole;
 		//Remove the entry at randomIndex from the list so that it can't be re-used.
 		gridPositions.RemoveAt(randomIndex);
 
@@ -231,6 +238,9 @@ public class BoardManager : MonoBehaviour
 
 			//Instantiate tileChoice at the position returned by RandomPosition with no change in rotation
 			Instantiate(tileChoice, randomPosition, Quaternion.identity);
+			Debug.Log("Digging Hole @ " + (int)randomPosition.x + " , " + (int)randomPosition.y);
+			board[(int)randomPosition.x, (int)randomPosition.y] = tileTypes.hole;
+
 		}
 	}
 

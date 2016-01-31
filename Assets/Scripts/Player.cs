@@ -142,7 +142,7 @@ public class Player : MonoBehaviour
     
 
 
-	public bool Move (int xDir, int yDir)
+	public bool Move ()
 	{
 		StartCoroutine(SmoothMovement(position));
 		hasmoved = false;
