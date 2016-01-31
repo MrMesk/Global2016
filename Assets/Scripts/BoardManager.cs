@@ -103,6 +103,23 @@ public class BoardManager : MonoBehaviour
 		}
 	}
 
+	void curse (GameObject go){
+
+		Player player = go.GetComponent<Player> ();
+		{
+			Curse curse = (Curse)player.curses [Curse.Type.Invisible];
+			if (curse.timer == 0) {
+				go.GetComponent<Renderer> ().enabled = true;
+			}
+		}
+		{
+			Curse curse = (Curse)player.curses [Curse.Type.Confused];
+			if (curse.timer == 0) {
+				go.GetComponent<Player> ().setUnCurseConfused();
+			}
+		}
+	}
+
 	void Update ()
 	{
 		time += Time.deltaTime;
@@ -112,14 +129,39 @@ public class BoardManager : MonoBehaviour
 			foreach(GameObject player in players)
 			{
 				Player _player = player.GetComponent<Player>();
+				_player.updateCurses();
 //				if (!_player.hasmoved){
 //					continue;
 //				}
 				Vector2 position = _player.getPosition();
-				Debug.Log("moving players  " + position);
-				
+
 				board[(int)position.x, (int)position.y] = tileTypes.player;
 				_player.Move((int)position.x, (int)position.y);
+
+				Inputs.DanceID castID = _player.executeDance();
+				switch(castID){
+				case Inputs.DanceID.Hide:
+					foreach(GameObject victim in players){
+						if (victim != player){
+							victim.GetComponent<Player>().setCurseInvisible();
+							victim.GetComponent<Renderer>().enabled = false;
+						}
+					}
+					break;
+				case Inputs.DanceID.Confuse:
+					foreach(GameObject victim in players){
+						if (victim != player){
+							victim.GetComponent<Player>().setCurseConfused();
+						}
+					}
+					break;
+				default:
+					break;
+				}
+			}
+			foreach(GameObject player in players)
+			{
+				curse (player);
 			}
 			time = 0f;	
 		}

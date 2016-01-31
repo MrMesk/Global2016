@@ -12,14 +12,16 @@ public class Player : MonoBehaviour
 
 	private Vector2 position;
 	private Inputs inputs;
-    private Hashtable curses;
+    public Hashtable curses;
     private KeyCode keyCodeLeft, keyCodeRight, keyCodeUp, keyCodeDown;
-    
+	private KeyCode keyCodeLeftBackup, keyCodeRightBackup, keyCodeUpBackup, keyCodeDownBackup;
+
 	private BoxCollider2D boxCollider;      //The BoxCollider2D component attached to this object.
 	private Rigidbody2D rb2D;               //The Rigidbody2D component attached to this object.
 	private float inverseMoveTime;          //Used to make movement more efficient.
 
 	public bool hasmoved = false;
+	public Inputs.DanceID danceID;
 	// Use this for initialization
 
 	public void setKeyCode (KeyCode _keyCodeLeft,
@@ -27,10 +29,15 @@ public class Player : MonoBehaviour
 	                 KeyCode _keyCodeUp,
 	                 KeyCode _keyCodeDown){
 
-		keyCodeLeft = _keyCodeLeft;
+		keyCodeLeft  = _keyCodeLeft;
 		keyCodeRight = _keyCodeRight;
 		keyCodeUp    = _keyCodeUp;
 		keyCodeDown  = _keyCodeDown;
+
+		keyCodeLeftBackup  = _keyCodeLeft;
+		keyCodeRightBackup = _keyCodeRight;
+		keyCodeUpBackup    = _keyCodeUp;
+		keyCodeDownBackup  = _keyCodeDown;
 	}
 
 	void Start ()
@@ -66,23 +73,27 @@ public class Player : MonoBehaviour
 		if (time < (timerbeat * 0.8f) || hasmoved) {
 			return;
 		}
-
+		Inputs.DanceID _danceID = Inputs.DanceID.None; 
 		if (Input.GetKeyDown (keyCodeLeft)) { // left
-			inputs.addDirection (Inputs.Direction.Left);
+			_danceID = inputs.addDirection (Inputs.Direction.Left);
 			position += Vector2.left;
 			hasmoved = true;
 		} else if (Input.GetKeyDown (keyCodeRight)) { // right
-			inputs.addDirection (Inputs.Direction.Right);
+			_danceID = inputs.addDirection (Inputs.Direction.Right);
 			position += Vector2.right;
 			hasmoved = true;
         } else if (Input.GetKeyDown (keyCodeUp)) { // up
-			inputs.addDirection (Inputs.Direction.Up);
+			_danceID = inputs.addDirection (Inputs.Direction.Up);
 			position += Vector2.up;
 			hasmoved = true;
 		} else if (Input.GetKeyDown (keyCodeDown)) { // down
-			inputs.addDirection (Inputs.Direction.Down);
+			_danceID = inputs.addDirection (Inputs.Direction.Down);
 			position += Vector2.down;
 			hasmoved = true;
+		}
+
+		if (_danceID != Inputs.DanceID.None) {
+			danceID = _danceID;
 		}
 
 //		if (time >= timerbeat) {
@@ -91,20 +102,38 @@ public class Player : MonoBehaviour
 	}
 
 
-    void setCurseInvisible () {	
-		Curse curseInvisible = (Curse)curses[Curse.Type.Invisible];
-	    curseInvisible.timer = 3;
-    }
+    public void setCurseInvisible () 
+	{	
+		Curse curse = (Curse)curses[Curse.Type.Invisible];
+	    curse.timer = 3;
+	}
+
     
-    void setCurseConfused () 
+    public void setCurseConfused () 
 	{
-	    Curse curseInvisible = (Curse)curses[Curse.Type.Confused];
-	    curseInvisible.timer = 2;
+	    Curse curse = (Curse)curses[Curse.Type.Confused];
+	    curse.timer = 8;
+
+		keyCodeLeft  = keyCodeUpBackup;
+		keyCodeRight = keyCodeDownBackup;
+		keyCodeUp    = keyCodeRightBackup;
+		keyCodeDown  = keyCodeLeftBackup;
     }
 
-    void updateCurses ()
+	public void setUnCurseConfused () 
 	{
-	    foreach (Curse curse in curses){
+		Curse curse = (Curse)curses[Curse.Type.Confused];
+		curse.timer = 0;
+		
+		keyCodeLeft  = keyCodeLeftBackup;
+		keyCodeRight = keyCodeRightBackup;
+		keyCodeUp    = keyCodeUpBackup;
+		keyCodeDown  = keyCodeDownBackup;
+	}
+
+    public void updateCurses ()
+	{
+	    foreach (Curse curse in curses.Values){
 			if (curse.timer > 0){
 			    curse.timer--;
 			}
@@ -115,11 +144,16 @@ public class Player : MonoBehaviour
 
 	public bool Move (int xDir, int yDir)
 	{
-	
 		StartCoroutine(SmoothMovement(position));
 		hasmoved = false;
 		time = 0;
 		return true;
+	}
+
+	public Inputs.DanceID executeDance () {
+		Inputs.DanceID t = danceID; 
+		danceID = Inputs.DanceID.None;
+		return t;
 	}
 
 	//Co-routine for moving units from one space to next, takes a parameter end to specify where to move to.

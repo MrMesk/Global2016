@@ -7,39 +7,24 @@ public class Inputs : MonoBehaviour {
     // Use this for initialization
     public enum Direction {Left, Right, Up, Down, None};
     private List<Direction> lastInputs = new List<Direction> ();
-    private List<Direction>[] dances = new List<Direction>[3];
-	
-    void Start () {
+    private List<Direction>[] dances = new List<Direction>[5];
+	public enum DanceID {Bombe = 0, Wave = 1, Hide = 2, Confuse = 3, Dig = 4, None};
+    void Start () 
+	{
 	// first move is last one
-	dances [0] = new List<Direction> {Direction.Left, Direction.Right, Direction.Right};
-	dances [1] = new List<Direction> {Direction.Left, Direction.Left};
-	dances [2] = new List<Direction> {Direction.Left, Direction.Right, Direction.Left};
+		dances [(int)DanceID.Bombe] = new List<Direction> {Direction.Down, Direction.Left, Direction.Right, Direction.Down};
+		dances [(int)DanceID.Wave] = new List<Direction> {Direction.Right, Direction.Right, Direction.Up, Direction.Left, Direction.Left};
+		dances [(int)DanceID.Hide] = new List<Direction> {Direction.Right, Direction.Down, Direction.Down, Direction.Right, Direction.Up};
+		dances [(int)DanceID.Confuse] = new List<Direction> {Direction.Up, Direction.Left, Direction.Down, Direction.Right};
+		dances [(int)DanceID.Dig] = new List<Direction> {Direction.Left, Direction.Up, Direction.Down, Direction.Right, Direction.Down};
+
 	Debug.Log ("start");
 	Debug.Log (lastInputs.Count);
     }
 
-    string directionToString (Direction d)
-	{
-	string s = "";
-	switch(d){
-	    case Direction.Down:
-		s = "D ";
-		break;
-	    case Direction.Left:
-		s = "L ";
-		break;
-	    case Direction.Right:
-		s = "R ";
-		break;
-	    case Direction.Up:
-		s = "U ";
-		break;
-	}
-	return s;
-    }
 
     // Update is called once per frame
-    public int findDance ()
+    public DanceID findDance ()
 	{
 		bool match = false;
 		int danceID;
@@ -50,6 +35,7 @@ public class Inputs : MonoBehaviour {
 			int i = lastInputs.Count - 1;
 			match = true;
 
+			Debug.Log ("DanceID " + danceID);
 			foreach (Direction direction in dance)
 			{
 				if (dance.Count > lastInputs.Count)
@@ -57,6 +43,8 @@ public class Inputs : MonoBehaviour {
 					match = false;
 					break;
 				}
+
+				Debug.Log ("danceID " + danceID + "> " + direction + " == " + lastInputs[i]);
 
 				if (direction != lastInputs[i])
 				{
@@ -68,29 +56,38 @@ public class Inputs : MonoBehaviour {
 			if (match)
 			{
 				Debug.Log("We have a match " + danceID);
+				Debug.Log("We have a match " + danceID);
+				Debug.Log("We have a match " + danceID);
+				Debug.Log("We have a match " + danceID);
+				Debug.Log("We have a match " + danceID);
+				Debug.Log("We have a match " + danceID);
 				lastInputs.Clear();
 				break;
 			}
 		}
 		if (match)
 		{
-			return danceID;
+			return (DanceID)danceID;
 		}
 		else
 		{
-			return -1;
+			return DanceID.None;
 		}
 	}
 
 
-	public int addDirection (Direction d)
+	public DanceID addDirection (Direction d)
 	{
 		lastInputs.Add(d);
 		Debug.Log ("addDirection");
-		if (lastInputs.Count >= 5)
+		if (lastInputs.Count >= 6)
 		{
 			lastInputs.RemoveAt(0);
 		}
+		string s = "";
+		foreach(Direction dd in lastInputs){
+			s += dd;
+		}Debug.Log (s);
 
 		return findDance();
 	}
