@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
 	public float moveTime = 0.1f;           //Time it will take object to move, in seconds.
 	public float time = 0f;
 	public float timerbeat = 1f;
+	public float shrinkSpeed = 1f;
 
 	public LayerMask blockingLayer;         //Layer on which collision will be checked.
 
@@ -96,6 +97,7 @@ public class Player : MonoBehaviour
 	{
 		audioPlayer.PlayOneShot(fallSound);
 		anim.SetTrigger("Falling");
+		StartCoroutine(Fall());
 	}
 
 	public Vector2 getPosition()
@@ -133,9 +135,6 @@ public class Player : MonoBehaviour
 			danceID = _danceID;
 		}
 
-//		if (time >= timerbeat) {
-//			time = 0f;
-//		}
 	}
 
 
@@ -187,7 +186,8 @@ public class Player : MonoBehaviour
 		return true;
 	}
 
-	public Inputs.DanceID executeDance () {
+	public Inputs.DanceID executeDance ()
+	{
 		Inputs.DanceID t = danceID; 
 		danceID = Inputs.DanceID.None;
 		return t;
@@ -217,5 +217,24 @@ public class Player : MonoBehaviour
 		}
 	}
 
+	public IEnumerator Fall()
+	{
+		Vector3 scaleT;
+		float scale;
+		scaleT = transform.localScale;
+		scale = transform.localScale.x;
+		while(scale >= 0.1f)
+		{
+			scale -= shrinkSpeed * Time.deltaTime;
+			scaleT.x = scale;
+			scaleT.y = scale;
+
+			transform.localScale = scaleT;
+			yield return null;
+		}
+
+		Destroy(this.gameObject);
+	
+	}
 
 }
